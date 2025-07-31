@@ -1,22 +1,65 @@
 function getHumanChoice() {
-  let humanChoice = prompt("Enter your choice : (Rock, paper, scissors)");
-  console.log(humanChoice);
+  const input = prompt("Enter your choice : (rock, paper, scissors)");
+  return input.toLowerCase();
 }
 
 function getComputerChoice() {
-  let num = Math.random();
-  let computerChoice = Math.round(num * 10) / 10;
+  const num = Math.floor(Math.random() * 3);
 
-  if (computerChoice < 0.5) {
-    console.log("Rock");
-  } else if (computerChoice === 0.5) {
-    console.log("Paper");
+  if (num === 1) {
+    return "rock";
+  } else if (num === 2) {
+    return "paper";
   } else {
-    console.log("Scissors");
+    return "scissors";
   }
 }
 
-let humanScore
+let humanScore = 0;
+let computerScore = 0;
 
-// getComputerChoice();
-// getHumanChoice();
+function playRound(humanChoice, computerChoice) {
+  const human = humanChoice.toLowerCase;
+  const computer = computerChoice;
+
+  if (computer === human) {
+    console.log("Draw");
+  } else if (
+    (computerChoice === "rock" && humanChoice === "paper") ||
+    (computerChoice === "paper" && humanChoice === "scissors") ||
+    (computerChoice == "scissors" && humanChoice == "rock")
+  ) {
+    console.log("You win");
+    humanScore++;
+  } else {
+    console.log("You lose");
+    computerScore++;
+  }
+}
+
+function playGame() {
+  humanScore = 0;
+  computerScore = 0;
+
+  for (let i = 1; i <= 5; i++){
+    console.log(`--- Round ${i} ---`);
+
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice();
+
+    playRound(humanSelection, computerSelection);
+    console.log("Game Over!");
+    console.log(`Score => You: ${humanScore}, Computer: ${computerScore}`);
+  }
+
+  console.log("Game Over!");
+  if (computerScore > humanScore) {
+    console.log("Better luck next time :)");
+  } else if (humanScore > computerScore) {
+    console.log("wohoooo you won");
+  } else {
+    console.log("it's a drawwwwwww");
+  }
+}
+
+playGame();
