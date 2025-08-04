@@ -1,0 +1,44 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+#result {
+    margin-top: 1.5%;
+    font-size: 1.5vw;
+    color: black;
+}
+
+#score {
+    margin-top: 1.5%;
+    font-size: 1.5vw;
+    color: black;
+}
+
+#winner {
+    margin-top: 1.5%;
+    font-size: 1.5vw;
+    color: black;
+}
+
+
+button {
+    padding: 1% 4%;
+    background-color: rgb(27, 27, 255);
+    border: none;
+    color: antiquewhite;
+    border-radius: 20px;
+    font-size: 2vw;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(53, 53, 255);
+}
+
+h1 {
+    font-size: 4vw;
+    color: rgb(30, 30, 30);
+}
+

@@ -1,65 +1,58 @@
-function getHumanChoice() {
-  const input = prompt("Enter your choice : (rock, paper, scissors)");
-  return input.toLowerCase();
-}
+let humanScore = 0;
+let computerScore = 0;
+
+const resultDiv = document.getElementById('result');
+const scoreDiv = document.getElementById('score');
+const winnerDiv = document.getElementById('winner');
+
 
 function getComputerChoice() {
   const num = Math.floor(Math.random() * 3);
 
-  if (num === 1) {
+  if (num === 0) {
     return "rock";
-  } else if (num === 2) {
+  } else if (num === 1) {
     return "paper";
   } else {
     return "scissors";
   }
 }
 
-let humanScore = 0;
-let computerScore = 0;
+function playRound(humanChoice) {
+  const computerChoice = getComputerChoice();
 
-function playRound(humanChoice, computerChoice) {
-  const human = humanChoice.toLowerCase;
-  const computer = computerChoice;
+  if (humanScore >= 5 || computerScore >= 5) {
+    return;
+  }
 
-  if (computer === human) {
-    console.log("Draw");
+  let result = "";
+
+  if (computerChoice === humanChoice) {
+    result = "Draw";
   } else if (
     (computerChoice === "rock" && humanChoice === "paper") ||
     (computerChoice === "paper" && humanChoice === "scissors") ||
     (computerChoice == "scissors" && humanChoice == "rock")
   ) {
-    console.log("You win");
+    result = "Human Wins";
     humanScore++;
   } else {
-    console.log("You lose");
+    result = "Computer Wins";
     computerScore++;
   }
+
+  resultDiv.textContent = result;
+  scoreDiv.textContent = `Score: You ${humanScore} - ${computerScore} Computer`;
+
+  if (humanScore === 5 || computerScore === 5) {
+    let resultText = humanScore > computerScore ? "You won the game 😘" : "Computer won you loserrrrr 😭";
+    winnerDiv.textContent = resultText
+  } 
 }
 
-function playGame() {
-  humanScore = 0;
-  computerScore = 0;
+document.getElementById('rock').addEventListener("click", () => playRound("rock"));
+document.getElementById('paper').addEventListener("click", () => playRound("paper"));
+document.getElementById('scissors').addEventListener("click", () => playRound("scissors"));
+  
 
-  for (let i = 1; i <= 5; i++){
-    console.log(`--- Round ${i} ---`);
-
-    const humanSelection = getHumanChoice();
-    const computerSelection = getComputerChoice();
-
-    playRound(humanSelection, computerSelection);
-    console.log("Game Over!");
-    console.log(`Score => You: ${humanScore}, Computer: ${computerScore}`);
-  }
-
-  console.log("Game Over!");
-  if (computerScore > humanScore) {
-    console.log("Better luck next time :)");
-  } else if (humanScore > computerScore) {
-    console.log("wohoooo you won");
-  } else {
-    console.log("it's a drawwwwwww");
-  }
-}
-
-playGame();
+// playGame();
